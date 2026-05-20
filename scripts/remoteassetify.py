@@ -3,7 +3,7 @@
 # Required utilities:
 # - util-linux: enosys (optional with --unsafe-optional-enosys)
 # - rpm: rpmspec
-# - curl
+# - curllllllllllllllllll
 
 from typing import *
 
