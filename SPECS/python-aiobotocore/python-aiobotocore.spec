@@ -4,43 +4,38 @@
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
-%global srcname botocore
+%global srcname aiobotocore
 
 Name:           python-%{srcname}
-Version:        1.43.11
+Version:        3.7.0
 Release:        %autorelease
-Summary:        The low-level, core functionality of boto3 and the AWS CLI
+Summary:        asyncio support for botocore library using aiohttp
 License:        Apache-2.0
-URL:            https://github.com/boto/botocore
-#!RemoteAsset:  sha256:d7d479cc2809ec2728f2898521003adfb79bfe6a4615c59dfd222ec52b0cee6b
-Source0:        https://files.pythonhosted.org/packages/source/b/%{srcname}/%{srcname}-%{version}.tar.gz
+URL:            https://aiobotocore.aio-libs.org/en/latest/
+VCS:            git:https://github.com/aio-libs/aiobotocore.git
+#!RemoteAsset:  sha256:c64d871ed5491a6571948dd48eabd185b46c6c23b64e3afd0c059fc7593ada30
+Source0:        https://files.pythonhosted.org/packages/source/a/%{srcname}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
 BuildSystem:    pyproject
 
 BuildOption(install):  -l %{srcname}
-BuildOption(check):  -e botocore.docs.translator
 
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  pkgconfig(python3)
-BuildRequires:  python3dist(pip)
-BuildRequires:  python3dist(setuptools)
-BuildRequires:  python3dist(urllib3)
-BuildRequires:  python3dist(jmespath)
-BuildRequires:  python3dist(python-dateutil)
-BuildRequires:  python3dist(awscrt)
 
 Provides:       python3-%{srcname} = %{version}-%{release}
 %python_provide python3-%{srcname}
 
 %description
-A low-level interface to a growing number of Amazon Web Services.
+Async client for amazon services using botocore and aiohttp/asyncio.
+This library is a mostly full featured asynchronous version of botocore.
 
 %generate_buildrequires
 %pyproject_buildrequires
 
 %files -f %{pyproject_files}
 %doc README.rst
-%license LICENSE.txt
+%license LICENSE
 
 %changelog
 %autochangelog

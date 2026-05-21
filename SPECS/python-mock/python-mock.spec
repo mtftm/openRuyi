@@ -4,36 +4,32 @@
 #
 # SPDX-License-Identifier: MulanPSL-2.0
 
-%global srcname botocore
+%global srcname mock
 
 Name:           python-%{srcname}
-Version:        1.43.11
+Version:        4.0.3
 Release:        %autorelease
-Summary:        The low-level, core functionality of boto3 and the AWS CLI
-License:        Apache-2.0
-URL:            https://github.com/boto/botocore
-#!RemoteAsset:  sha256:d7d479cc2809ec2728f2898521003adfb79bfe6a4615c59dfd222ec52b0cee6b
-Source0:        https://files.pythonhosted.org/packages/source/b/%{srcname}/%{srcname}-%{version}.tar.gz
+Summary:        The Python mock library
+License:        BSD-2-Clause
+URL:            https://mock.readthedocs.io/en/latest/
+VCS:            git:https://github.com/testing-cabal/mock.git
+#!RemoteAsset:  sha256:7d3fbbde18228f4ff2f1f119a45cdffa458b4c0dee32eb4d2bb2f82554bac7bc
+Source0:        https://files.pythonhosted.org/packages/source/m/%{srcname}/%{srcname}-%{version}.tar.gz
 BuildArch:      noarch
 BuildSystem:    pyproject
 
 BuildOption(install):  -l %{srcname}
-BuildOption(check):  -e botocore.docs.translator
 
 BuildRequires:  pyproject-rpm-macros
 BuildRequires:  pkgconfig(python3)
-BuildRequires:  python3dist(pip)
-BuildRequires:  python3dist(setuptools)
-BuildRequires:  python3dist(urllib3)
-BuildRequires:  python3dist(jmespath)
-BuildRequires:  python3dist(python-dateutil)
-BuildRequires:  python3dist(awscrt)
 
 Provides:       python3-%{srcname} = %{version}-%{release}
 %python_provide python3-%{srcname}
 
 %description
-A low-level interface to a growing number of Amazon Web Services.
+mock is a library for testing in Python.
+It allows you to replace parts of your system under test
+with mock objects and make assertions about how they have been used.
 
 %generate_buildrequires
 %pyproject_buildrequires
